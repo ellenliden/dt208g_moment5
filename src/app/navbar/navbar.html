@@ -2,10 +2,15 @@
   <ul [class.open]="menuOpen">
     <li>
       <a
-        routerLink="/courses"
+        routerLink="/"
         routerLinkActive="active"
-        aria-current="page"
+        [routerLinkActiveOptions]="{ exact: true }"
         (click)="closeMenu()"
+        >Hem</a
+      >
+    </li>
+    <li>
+      <a routerLink="/courses" routerLinkActive="active" (click)="closeMenu()"
         >Kurser</a
       >
     </li>
