@@ -1,1 +1,24 @@
-<p>courses works!</p>
+<div class="courses-container">
+  <h1>Kurser</h1>
+
+  <!--Loading state -->
+  <div *ngIf="loading" class="loading">
+    <p>Laddar kurser...</p>
+  </div>
+
+  <!--Kurslista -->
+  <div *ngIf="!loading" class="courses-grid">
+    <div *ngFor="let course of courses" class="course-card">
+      <h3>{{ course.courseCode }}</h3>
+      <h4>{{ course.courseName }}</h4>
+      <p><strong>Ämne:</strong> {{ course.subject }}</p>
+      <p><strong>Poäng:</strong> {{ course.points }} hp</p>
+      <p><strong>Nivå:</strong> {{ course.level }}</p>
+    </div>
+  </div>
+
+  <!--Statistik -->
+  <div *ngIf="!loading" class="stats">
+    <p>Totalt {{ courses.length }} kurser</p>
+  </div>
+</div>
