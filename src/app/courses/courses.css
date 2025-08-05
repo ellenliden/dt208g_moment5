@@ -102,23 +102,67 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e1e5e9;
+}
 
-.course-card h3 {
+.course-header h3 {
   color: #1e4989;
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 700;
 }
 
-.course-card h4 {
-  color: #333;
-  margin: 0 0 1rem 0;
-  font-size: 1rem;
+.points {
+  background: #1e4989;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
+
+.course-name {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
 
 .course-card p {
   margin: 0.5rem 0;
   color: #666;
 }
+.course-details {
+  margin-bottom: 1.5rem;
+}
+
+.course-details p {
+  margin: 0.5rem 0;
+  color: #666;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.course-details strong {
+  color: #333;
+  min-width: 5rem;
+}
+
+.course-details i {
+  color: #1e4989;
+  width: 1rem;
+}
+
 
 .stats {
   text-align: center;
