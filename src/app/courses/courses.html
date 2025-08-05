@@ -1,14 +1,74 @@
 <div class="courses-container">
   <h1>Kurser</h1>
 
-  <!--Loading state -->
+  <!-- Loading state -->
   <div *ngIf="loading" class="loading">
     <p>Laddar kurser...</p>
   </div>
 
-  <!--Kurslista -->
+  <!-- Filter och sortering -->
+  <div *ngIf="!loading" class="filters-section">
+    <!-- Sökfunktion -->
+    <div class="filter-group">
+      <label for="search"
+        ><i class="fas fa-search"></i>Sök kurskod eller kursnamn:</label
+      >
+      <input
+        type="text"
+        id="search"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+        placeholder="T.ex. DT208G eller Datateknik..."
+        class="search-input"
+      />
+    </div>
+
+    <!-- Ämnesfilter -->
+    <div class="filter-group">
+      <label for="subject"><i class="fas fa-tags"></i> Filtrera på ämne:</label>
+      <select
+        id="subject"
+        [(ngModel)]="selectedSubject"
+        (change)="onSubjectChange()"
+      >
+        <option value="">Alla ämnen</option>
+        <option *ngFor="let subject of subjects" [value]="subject">
+          {{ subject }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Nivåfilter -->
+    <div class="filter-group">
+      <label for="level"
+        ><i class="fas fa-layer-group"></i>Filtrera på nivå:</label
+      >
+      <select id="level" [(ngModel)]="selectedLevel" (change)="onLevelChange()">
+        <option value="">Alla nivåer</option>
+        <option *ngFor="let level of levels" [value]="level">
+          {{ level }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Sortering -->
+    <div class="filter-group">
+      <label for="sort"><i class="fas fa-sort"></i>Sortera efter:</label>
+      <select id="sort" [(ngModel)]="sortBy" (change)="onSort()">
+        <option value="courseCode">Kurskod</option>
+        <option value="courseName">Kursnamn</option>
+        <option value="points">Poäng</option>
+        <option value="subject">Ämne</option>
+      </select>
+    </div>
+
+    <!-- Rensa filter -->
+    <button (click)="clearFilters()" class="clear-btn">Rensa filter</button>
+  </div>
+
+  <!-- Kurslista -->
   <div *ngIf="!loading" class="courses-grid">
-    <div *ngFor="let course of courses" class="course-card">
+    <div *ngFor="let course of filteredCourses" class="course-card">
       <h3>{{ course.courseCode }}</h3>
       <h4>{{ course.courseName }}</h4>
       <p><strong>Ämne:</strong> {{ course.subject }}</p>
@@ -17,8 +77,8 @@
     </div>
   </div>
 
-  <!--Statistik -->
+  <!-- Statistik -->
   <div *ngIf="!loading" class="stats">
-    <p>Totalt {{ courses.length }} kurser</p>
+    <p>Visar {{ filteredCourses.length }} av {{ courses.length }} kurser</p>
   </div>
 </div>
