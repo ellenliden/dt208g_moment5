@@ -93,6 +93,9 @@
           {{ course.institutionCode }}
         </p>
       </div>
+      <button (click)="addToSaved(course)" class="save-btn">
+        <i class="fas fa-bookmark"></i> Spara kurs
+      </button>
     </div>
   </div>
 
@@ -100,4 +103,16 @@
   <div *ngIf="!loading" class="stats">
     <p>Visar {{ filteredCourses.length }} av {{ courses.length }} kurser</p>
   </div>
+</div>
+
+<div *ngIf="savedCourses.length > 0" class="saved-courses">
+  <h2><i class="fas fa-book"></i> Sparade kurser</h2>
+  <ul>
+    <li *ngFor="let course of savedCourses">
+      {{ course.courseCode }} – {{ course.courseName }}
+      <button (click)="removeFromSaved(course.courseCode)" class="remove-btn">
+        <i class="fas fa-trash-alt"></i> Ta bort
+      </button>
+    </li>
+  </ul>
 </div>

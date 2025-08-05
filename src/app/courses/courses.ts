@@ -13,6 +13,7 @@ import { CourseService, Course } from '../services/course.service';
 export class Courses implements OnInit {
   courses: Course[] = [];
   filteredCourses: Course[] = [];
+  savedCourses: Course[] = [];
   loading: boolean = true;
 
   // Sökfunktion
@@ -33,6 +34,7 @@ export class Courses implements OnInit {
 
   ngOnInit(): void {
     this.loadCourses();
+    this.loadSavedCourses(); 
   }
 
   private loadCourses(): void {
@@ -128,4 +130,27 @@ export class Courses implements OnInit {
 
     this.filteredCourses = filtered;
   }
+  addToSaved(course: Course): void {
+    if (!this.savedCourses.find(c => c.courseCode === course.courseCode)) {
+      this.savedCourses.push(course);
+      this.updateLocalStorage();
+    }
+  }
+  
+  removeFromSaved(courseCode: string): void {
+    this.savedCourses = this.savedCourses.filter(c => c.courseCode !== courseCode);
+    this.updateLocalStorage();
+  }
+  
+  private loadSavedCourses(): void {
+    const saved = localStorage.getItem('savedCourses');
+    if (saved) {
+      this.savedCourses = JSON.parse(saved);
+    }
+  }
+  
+  private updateLocalStorage(): void {
+    localStorage.setItem('savedCourses', JSON.stringify(this.savedCourses));
+  }
+  
 }
