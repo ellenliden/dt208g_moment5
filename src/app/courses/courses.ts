@@ -34,7 +34,7 @@ export class Courses implements OnInit {
 
   ngOnInit(): void {
     this.loadCourses();
-    this.loadSavedCourses(); 
+    this.loadSavedCourses();
   }
 
   private loadCourses(): void {
@@ -131,10 +131,14 @@ export class Courses implements OnInit {
     this.filteredCourses = filtered;
   }
   addToSaved(course: Course): void {
-    if (!this.savedCourses.find(c => c.courseCode === course.courseCode)) {
+    if (!this.savedCourses.find((c) => c.courseCode === course.courseCode)) {
       this.savedCourses.push(course);
       this.updateLocalStorage();
     }
+  }
+
+  isCourseSaved(courseCode: string): boolean {
+    return this.savedCourses.some((c) => c.courseCode === courseCode);
   }
   private loadSavedCourses(): void {
     const saved = localStorage.getItem('savedCourses');
@@ -142,7 +146,7 @@ export class Courses implements OnInit {
       this.savedCourses = JSON.parse(saved);
     }
   }
-  
+
   private updateLocalStorage(): void {
     localStorage.setItem('savedCourses', JSON.stringify(this.savedCourses));
   }

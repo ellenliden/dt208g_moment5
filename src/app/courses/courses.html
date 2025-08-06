@@ -93,8 +93,21 @@
           {{ course.institutionCode }}
         </p>
       </div>
-      <button (click)="addToSaved(course)" class="save-btn">
-        <i class="fas fa-bookmark"></i> Spara kurs
+      <button
+        (click)="addToSaved(course)"
+        [class]="
+          isCourseSaved(course.courseCode) ? 'save-btn saved' : 'save-btn'
+        "
+        [disabled]="isCourseSaved(course.courseCode)"
+      >
+        <i
+          [class]="
+            isCourseSaved(course.courseCode)
+              ? 'fas fa-check'
+              : 'fas fa-bookmark'
+          "
+        ></i>
+        {{ isCourseSaved(course.courseCode) ? "Sparad" : "Spara kurs" }}
       </button>
     </div>
   </div>
