@@ -1,1 +1,26 @@
-<p>schedule works!</p>
+<div class="saved-courses">
+    <h2><i class="fas fa-calendar-alt"></i> Mina sparade kurser</h2>
+  
+    <div *ngIf="savedCourses.length === 0">
+      <p>Du har inte sparat några kurser ännu.</p>
+    </div>
+  
+    <div *ngFor="let course of savedCourses" class="course-card">
+      <div class="course-header">
+        <h3>{{ course.courseCode }}</h3>
+        <span class="points">{{ course.points }} hp</span>
+      </div>
+  
+      <h4 class="course-name">{{ course.courseName }}</h4>
+  
+      <p><strong>Ämne:</strong> {{ course.subject }}</p>
+      <p><strong>Nivå:</strong> {{ course.level }}</p>
+      <p><strong>Progression:</strong> {{ course.progression }}</p>
+      <p><strong>Institution:</strong> {{ course.institutionCode }}</p>
+  
+      <button (click)="removeFromSaved(course.courseCode)" class="remove-btn">
+        <i class="fas fa-trash"></i> Ta bort
+      </button>
+    </div>
+  </div>
+  
