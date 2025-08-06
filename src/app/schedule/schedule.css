@@ -10,6 +10,55 @@
   margin-bottom: 2rem;
 }
 
+.statistics-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0.8rem 1rem;
+  background: rgba(30, 73, 137, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(30, 73, 137, 0.1);
+}
+
+.stats-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.stat-text {
+  color: #1e4989;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-text i {
+  color: #1e4989;
+  font-size: 1.1rem;
+}
+
+.stat-item {
+  background: #1e4989;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stat-item i {
+  color: white;
+  font-size: 0.8rem;
+}
+
 .empty-state {
   text-align: center;
   padding: 3rem;
@@ -134,23 +183,31 @@
   font-size: 0.8rem;
 }
 
-.stats {
-  text-align: center;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 5px;
-  color: #666;
-}
-
-.stats p {
-  margin: 0;
-  font-weight: 600;
-}
-
 /* Responsiv design */
 @media (max-width: 768px) {
   .saved-courses {
     padding: 1rem;
+  }
+
+  .statistics-section {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .stats-info {
+    gap: 0.6rem;
+  }
+
+  .stat-text {
+    font-size: 1.1rem;
+  }
+
+  .stat-text i {
+    font-size: 0.9rem;
+  }
+
+  .stat-item {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
   }
 
   .courses-grid {

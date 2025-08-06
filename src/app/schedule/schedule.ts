@@ -23,8 +23,23 @@ export class Schedule implements OnInit {
     }
   }
 
+  // beräknar antal sparade kurser
+  getSavedCoursesCount(): number {
+    return this.savedCourses.length;
+  }
+
+  // beräknar totala poäng för sparade kurser
+  getTotalPoints(): number {
+    return this.savedCourses.reduce(
+      (total, course) => total + course.points,
+      0
+    );
+  }
+
   removeFromSaved(courseCode: string): void {
-    this.savedCourses = this.savedCourses.filter(c => c.courseCode !== courseCode);
+    this.savedCourses = this.savedCourses.filter(
+      (c) => c.courseCode !== courseCode
+    );
     localStorage.setItem('savedCourses', JSON.stringify(this.savedCourses));
   }
 }
