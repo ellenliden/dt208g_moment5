@@ -66,6 +66,14 @@
     <button (click)="clearFilters()" class="clear-btn">Rensa filter</button>
   </div>
 
+  <!-- Statistik direkt efter filter -->
+  <div *ngIf="!loading" class="course-stats">
+    <p>
+      <i class="fas fa-filter"></i> Visar {{ filteredCourses.length }} av
+      {{ courses.length }} kurser
+    </p>
+  </div>
+
   <!-- Kurslista -->
   <div *ngIf="!loading" class="courses-grid">
     <div *ngFor="let course of filteredCourses" class="course-card">
@@ -124,10 +132,5 @@
         </button>
       </div>
     </div>
-  </div>
-
-  <!-- Statistik -->
-  <div *ngIf="!loading" class="stats">
-    <p>Visar {{ filteredCourses.length }} av {{ courses.length }} kurser</p>
   </div>
 </div>
