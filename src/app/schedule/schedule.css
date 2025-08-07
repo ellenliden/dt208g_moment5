@@ -91,7 +91,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 86%;
+  max-height: 88%;
 }
 
 .course-card:hover {
@@ -103,7 +103,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e1e5e9;
 }
@@ -133,7 +133,7 @@
 }
 
 .course-details {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   flex-grow: 1;
 }
 
@@ -180,6 +180,34 @@
 }
 
 .remove-btn i {
+  font-size: 0.8rem;
+}
+
+/* Kursplan länk */
+.syllabus-link {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e1e5e9;
+}
+
+.syllabus-link a {
+  color: #1e4989;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.1rem;
+}
+
+.syllabus-link a:hover {
+  color: #0d2d5a;
+  text-decoration: underline;
+}
+
+.syllabus-link i {
   font-size: 0.8rem;
 }
 
