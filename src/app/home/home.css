@@ -86,26 +86,52 @@
   border-left: 4px solid #1e4989;
 }
 
-.info-section h2 {
+.info-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.info-text {
+  flex: 1;
+}
+
+.info-text h2 {
   color: #1e4989;
   margin-bottom: 1rem;
   font-size: 1.8rem;
 }
 
-.info-section p {
+.info-text p {
   color: #333;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
-.info-section ul {
+.info-text ul {
   color: #666;
   line-height: 1.8;
   padding-left: 1.5rem;
 }
 
-.info-section li {
+.info-text li {
   margin-bottom: 0.5rem;
+}
+
+.info-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.info-image img {
+  max-width: 100%;
+  max-height: 22rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive design */
@@ -127,6 +153,16 @@
     font-size: 1.1rem;
   }
 
+  .info-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info-image img {
+    max-width: 100%;
+    max-height: 22rem;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -145,6 +181,15 @@
 
   .hero-section p {
     font-size: 1rem;
+  }
+
+  .info-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .info-image img {
+    max-width: 90%;
   }
 
   .feature-card {
