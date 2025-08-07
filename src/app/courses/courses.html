@@ -102,6 +102,19 @@
         </p>
       </div>
 
+      <!-- Kursplan länk -->
+      <div *ngIf="course.syllabus" class="syllabus-link">
+        <a
+          [href]="course.syllabus"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Öppna kursplan"
+        >
+          <i class="fas fa-external-link-alt"></i>
+          Läs kursplan
+        </a>
+      </div>
+
       <!-- sektion med knappar (spara och ta bort) -->
       <div class="course-actions">
         <button
