@@ -137,6 +137,13 @@ export class Courses implements OnInit {
     }
   }
 
+  removeFromSaved(courseCode: string): void {
+    this.savedCourses = this.savedCourses.filter(
+      (c) => c.courseCode !== courseCode
+    );
+    this.updateLocalStorage();
+  }
+
   isCourseSaved(courseCode: string): boolean {
     return this.savedCourses.some((c) => c.courseCode === courseCode);
   }

@@ -93,22 +93,36 @@
           {{ course.institutionCode }}
         </p>
       </div>
-      <button
-        (click)="addToSaved(course)"
-        [class]="
-          isCourseSaved(course.courseCode) ? 'save-btn saved' : 'save-btn'
-        "
-        [disabled]="isCourseSaved(course.courseCode)"
-      >
-        <i
-          [class]="
-            isCourseSaved(course.courseCode)
-              ? 'fas fa-check'
-              : 'fas fa-bookmark'
-          "
-        ></i>
-        {{ isCourseSaved(course.courseCode) ? "Sparad" : "Spara kurs" }}
-      </button>
+
+      <!-- sektion med knappar (spara och ta bort) -->
+      <div class="course-actions">
+        <button
+          *ngIf="!isCourseSaved(course.courseCode)"
+          (click)="addToSaved(course)"
+          class="save-btn"
+        >
+          <i class="fas fa-bookmark"></i>
+          Spara kurs
+        </button>
+
+        <button
+          *ngIf="isCourseSaved(course.courseCode)"
+          class="save-btn saved"
+          disabled
+        >
+          <i class="fas fa-check"></i>
+          Sparad
+        </button>
+
+        <button
+          *ngIf="isCourseSaved(course.courseCode)"
+          (click)="removeFromSaved(course.courseCode)"
+          class="remove-btn-small"
+          title="Ta bort från ramschema"
+        >
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
     </div>
   </div>
 
