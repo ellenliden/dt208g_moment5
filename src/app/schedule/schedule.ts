@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Course } from '../services/course.service';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   selector: 'app-schedule',
@@ -12,34 +13,25 @@ import { Course } from '../services/course.service';
 export class Schedule implements OnInit {
   savedCourses: Course[] = [];
 
-  ngOnInit(): void {
-    this.loadSavedCourses();
-  }
+  constructor(private scheduleService: ScheduleService) {}
 
-  loadSavedCourses(): void {
-    const saved = localStorage.getItem('savedCourses');
-    if (saved) {
-      this.savedCourses = JSON.parse(saved);
-    }
+  ngOnInit(): void {
+    this.scheduleService.savedCourses$.subscribe((courses) => {
+      this.savedCourses = courses;
+    });
   }
 
   // beräknar antal sparade kurser
   getSavedCoursesCount(): number {
-    return this.savedCourses.length;
+    return this.scheduleService.getSavedCoursesCount();
   }
 
   // beräknar totala poäng för sparade kurser
   getTotalPoints(): number {
-    return this.savedCourses.reduce(
-      (total, course) => total + course.points,
-      0
-    );
+    return this.scheduleService.getTotalPoints();
   }
 
   removeFromSaved(courseCode: string): void {
-    this.savedCourses = this.savedCourses.filter(
-      (c) => c.courseCode !== courseCode
-    );
-    localStorage.setItem('savedCourses', JSON.stringify(this.savedCourses));
+    this.scheduleService.removeCourse(courseCode);
   }
 }

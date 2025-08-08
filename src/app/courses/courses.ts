@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CourseService, Course } from '../services/course.service';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   selector: 'app-courses',
@@ -30,11 +31,19 @@ export class Courses implements OnInit {
   subjects: string[] = [];
   levels: string[] = [];
 
-  constructor(private courseService: CourseService) {}
+  constructor(
+    private courseService: CourseService,
+    private scheduleService: ScheduleService
+  ) {}
 
   ngOnInit(): void {
     this.loadCourses();
     this.loadSavedCourses();
+
+    // Prenumerera på ändringar i ramschema
+    this.scheduleService.savedCourses$.subscribe((courses) => {
+      this.savedCourses = courses;
+    });
   }
 
   private loadCourses(): void {
@@ -131,30 +140,20 @@ export class Courses implements OnInit {
     this.filteredCourses = filtered;
   }
   addToSaved(course: Course): void {
-    if (!this.savedCourses.find((c) => c.courseCode === course.courseCode)) {
-      this.savedCourses.push(course);
-      this.updateLocalStorage();
-    }
+    this.scheduleService.addCourse(course);
   }
 
   removeFromSaved(courseCode: string): void {
-    this.savedCourses = this.savedCourses.filter(
-      (c) => c.courseCode !== courseCode
-    );
-    this.updateLocalStorage();
+    this.scheduleService.removeCourse(courseCode);
   }
 
   isCourseSaved(courseCode: string): boolean {
-    return this.savedCourses.some((c) => c.courseCode === courseCode);
+    return this.scheduleService.isCourseSaved(courseCode);
   }
   private loadSavedCourses(): void {
-    const saved = localStorage.getItem('savedCourses');
-    if (saved) {
-      this.savedCourses = JSON.parse(saved);
-    }
-  }
-
-  private updateLocalStorage(): void {
-    localStorage.setItem('savedCourses', JSON.stringify(this.savedCourses));
+    // Ladda data från service
+    this.scheduleService.savedCourses$.subscribe((courses) => {
+      this.savedCourses = courses;
+    });
   }
 }
