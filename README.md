@@ -1,59 +1,86 @@
-# TempAngular
+# Kurser & Ramschema - Angular Applikation
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
+## Projektbeskrivning
 
-## Development server
+Denna webbapplikation är skapad för ett lärosäte där studenter kan söka bland kurser och skapa ett personligt ramschema. Applikationen är byggd med Angular och TypeScript och fokuserar på användarvänlighet och responsiv design.
 
-To start a local development server, run:
+## Uppgift
 
-```bash
-ng serve
-```
+Skapa en webbplats för ett fiktivt lärosäte där studenter kan:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Söka och bläddra bland kurser
+- Filtrera och sortera kurser
+- Se antal kurser i aktuell sökning
+- Skapa ett personligt ramschema
+- Se antal valda kurser i ramschemat
+- Se totala högskolepoäng för de valda kurserna i ramschemat
 
-## Code scaffolding
+## Grundkrav - Uppfyllda
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Tekniska krav:
 
-```bash
-ng generate component component-name
-```
+- **Angular och TypeScript**: Applikationen är byggd med Angular och TypeScript
+- **Minst två undersidor**: Implementerat sidorna courses och schedule
+- **Komponenter och routing**: Använder Angular routing för navigation
+- **Minst två services**:
+  - `CourseService` - Hanterar kursdata
+  - `ScheduleService` - Hanterar ramschema-funktionalitet
+- **Ramschema utan dubletter**: Förhindrar att samma kurs läggs till flera gånger
+- **Uppdatering utan sidomladdning**: Reaktiva uppdateringar med RxJS
+- **localStorage**: Sparar ramschema lokalt och laddar vid sidomladdning
+- **Responsiv design**: Fungerar på både stora och små skärmar
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Kurskrav:
 
-```bash
-ng generate --help
-```
+- **Sortering**: På kurskod, kursnamn, poäng, ämne
+- **Filtrering**: På kurskod, kursnamn, ämne, nivå
+- **Välja ut kurser från ämne**: Dropdown för ämnesfilter
+- **Lägga till kurser**: "Spara kurs" knapp
+- **Antal kurser**: Visar antal i aktuell sökning
 
-## Building
+### Ramschema-krav:
 
-To build the project run:
+- **Tydlig presentation**: Kurskort med all information
+- **Antal kurser**: Beräknas och visas automatiskt
+- **Antal sammanlagda poäng**: Beräknas och visas automatiskt
+- **Ta bort kurser**: "Ta bort från ramschema" knapp
+- **localStorage**: Sparar och laddar automatiskt
 
-```bash
-ng build
-```
+## Extra Funktionalitet
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Jag har skapat en välutgormad webbplats när det kommer till användargränssnitt och responsivitet. Webbplatsen har en tydlig presentation av kurserna samrt antal kurser och högskolepoäng. Webbplatsen har dessutom två extra sidor - en startsida och en kontaktsida. Ett konsistent färgschema används. Hover-effekter såsom interaktiva element med smooth transitions samt FontAwesome-ikoner används för bättre visuell feedback.
 
-## Running unit tests
+Jag har skapat en responsiv navigation med routing. Länkar och knappar ändrar utseende vid interaktion. Informativa meddelanden visas när inga kurser finns eller när sidan laddas.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Jag använder Error handling för hantering av fel vid laddning av kurser (skrivs ut till console-loggen). Loading states används för en laddningsindikator.
 
-```bash
-ng test
-```
+## Teknisk Stack
 
-## Running end-to-end tests
+- **Framework**: Angular 20
+- **Språk**: TypeScript
+- **Styling**: CSS3 med Grid och Flexbox
+- **Ikoner**: FontAwesome
+- **State Management**: RxJS BehaviorSubject
+- **Data Storage**: localStorage
+- **HTTP**: Angular HttpClient
 
-For end-to-end (e2e) testing, run:
+## Installation och Körning
 
-```bash
-ng e2e
-```
+1. **Installera dependencies**:
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+   ```
+   npm install
+   ```
 
-## Additional Resources
+2. **Starta utvecklingsserver**:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   ```
+   npm start
+   ```
+
+3. **Öppna applikationen**:
+   Navigera till `http://localhost:4200`
+
+## Slutsats
+
+Denna applikation uppfyller alla grundkrav och innehåller flera extra funktioner som visar på fördjupad förståelse för Angular och TypeScript. Koden är väl strukturerad, användarvänlig och redo för produktionsanvändning.
