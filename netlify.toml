@@ -1,22 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "dist/temp-angular"
-
-# Redirect alla routes till index.html för Angular SPA
-[[redirects]]
-  from = "/courses"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/schedule"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/contact"
-  to = "/index.html"
-  status = 200
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
