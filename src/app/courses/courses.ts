@@ -54,8 +54,12 @@ export class Courses implements OnInit {
         this.loading = false;
 
         // Hämta unika ämnen och nivåer för filter
-        this.subjects = [...new Set(courses.map((c) => c.subject))].sort();
-        this.levels = [...new Set(courses.map((c) => c.level))].sort();
+        this.subjects = [...new Set(courses.map((c) => c.subject))].sort(
+          (a, b) => a.localeCompare(b, 'sv-SE')
+        );
+        this.levels = [...new Set(courses.map((c) => c.level))].sort((a, b) =>
+          a.localeCompare(b, 'sv-SE')
+        );
       },
       error: (error) => {
         console.error('Fel vid laddning av kurser:', error);
@@ -125,13 +129,13 @@ export class Courses implements OnInit {
     filtered.sort((a, b) => {
       switch (this.sortBy) {
         case 'courseCode':
-          return a.courseCode.localeCompare(b.courseCode);
+          return a.courseCode.localeCompare(b.courseCode, 'sv-SE');
         case 'courseName':
-          return a.courseName.localeCompare(b.courseName);
+          return a.courseName.localeCompare(b.courseName, 'sv-SE');
         case 'points':
           return a.points - b.points;
         case 'subject':
-          return a.subject.localeCompare(b.subject);
+          return a.subject.localeCompare(b.subject, 'sv-SE');
         default:
           return 0;
       }
